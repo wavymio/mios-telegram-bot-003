@@ -4,7 +4,6 @@ const { sendMessage, replyToMessage, replyToCommand } = require('../api/sendMess
 const { commands } = require('../config/commands')
 const processText = require('../api/geminiAI.js')
 const { saveUserData } = require('../functions/saveUserData.js')
-const sendRandomMessage = require('../functions/sendRandomMessage.js')
 
 router.post('/', async (req, res) => {
     try {
