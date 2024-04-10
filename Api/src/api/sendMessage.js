@@ -3,6 +3,17 @@ const axios = require('axios')
 const botToken = process.env.BOT_TOKEN
 const apiUrl = `${process.env.API_URL}${botToken}`
 
+const sendTypingAction = async (chatId) => {
+    try {
+        await axios.post(`${apiUrl}/sendChatAction`, {
+            chat_id: chatId,
+            action: 'typing'
+        });
+    } catch (err) {
+        console.log("Error sending typing action:", err);
+    }
+}
+
 const replyToCommand = async (chatId) => {
     try {
         const response = axios.post(`${apiUrl}/sendMessage`,{
@@ -32,6 +43,7 @@ const sendMessage = async (chatId) => {
 
 const replyToMessage = async (chatId, messageId, responseText) => {
     try {
+        await sendTypingAction(chatId)
         const response = await axios.post(`${apiUrl}/sendMessage`,{
             chat_id: chatId,
             text: responseText,
@@ -46,6 +58,7 @@ const replyToMessage = async (chatId, messageId, responseText) => {
 }
 
 module.exports = {
+    sendTypingAction,
     replyToCommand,
     sendMessage,
     replyToMessage
