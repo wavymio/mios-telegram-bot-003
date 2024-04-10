@@ -29,13 +29,13 @@ router.post('/', async (req, res) => {
                     break
             }
         } else {
-            const processedText = await processText(message.text)
+            const processedText = await processText(message.text, message.chat.id)
             console.log(processedText)
             replyToMessage(message.chat.id, message.message_id, processedText)
         }
 
         res.sendStatus(200)
-        
+
     }  catch (err) {
         console.error('Error in / route handler:', err)
         res.sendStatus(500)
