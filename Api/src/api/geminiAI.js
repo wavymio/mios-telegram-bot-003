@@ -64,7 +64,12 @@ const processText = async (userText, chatId) => {
 
         const result = await chat.sendMessage(userText)
         const response = await result.response
-        const responseText = response.text()
+        let responseText = response.text()
+
+        if (!responseText) {
+            console.warn('Empty response text received.')
+            responseText = getRandomMisunderstanding() 
+        }
         // console.log(responseText)
 
         // conversationHistory = []
