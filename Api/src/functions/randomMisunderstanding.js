@@ -1,10 +1,7 @@
 const getRandomMisunderstanding = () => {
     const shortResponses = [
-        "Sorry I don't understand you",
-        "Come again?",
-        "Say it again",
+        "Only send texts to me, not this crap",
         "Speak english nigga",
-        "Repeat whay you said",
         "Bro say it in a way I can understand or get lost"
     ]
     
