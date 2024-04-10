@@ -14,9 +14,9 @@ router.post('/', async (req, res) => {
             console.log('No message found in userData')
             return res.sendStatus(400)
         }
-        
-        saveUserData(userData)
 
+        saveUserData(userData)
+    
         if (message.text && message.text.startsWith('/')) {
             const words = message.text.substring(1).split(' ')
 
@@ -29,13 +29,14 @@ router.post('/', async (req, res) => {
                     break
             }
         } else {
-            const processedText = await processText(message.text, message.chat.id)
+            const processedText = await processText(message.text)
             console.log(processedText)
             replyToMessage(message.chat.id, message.message_id, processedText)
         }
 
         res.sendStatus(200)
-    } catch (err) {
+        
+    }  catch (err) {
         console.error('Error in / route handler:', err)
         res.sendStatus(500)
     }
