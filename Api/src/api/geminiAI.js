@@ -57,7 +57,7 @@ const processText = async (userText, chatId) => {
         const chat = model.startChat({
             history: conversationHistory,
             generationConfig: {
-                maxOutputTokens: 100,
+                maxOutputTokens: 1000,
                 temperature: 1.0, 
             }
         })
