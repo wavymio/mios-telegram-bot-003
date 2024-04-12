@@ -76,6 +76,7 @@ const processText = async (userText, chatId) => {
 
         return responseText
     } catch (err) {
+        console.error("Error caught:", err)
         if (err.response && err.response.promptFeedback && err.response.promptFeedback.blockReason === 'SAFETY') {
             await sendTypingAction(chatId)
             console.log("sendMessage() was unsuccessful. Response was blocked due to SAFETY.")
