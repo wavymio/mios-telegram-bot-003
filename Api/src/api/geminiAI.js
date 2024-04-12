@@ -76,17 +76,18 @@ const processText = async (userText, chatId) => {
 
         return responseText
     } catch (err) {
-        if (err.response && err.response.promptFeedback && err.response.promptFeedback.blockReason === 'SAFETY') {
-            await sendTypingAction(chatId)
-            console.log("sendMessage() was unsuccessful. Response was blocked due to SAFETY.")
-            console.log(err.response)
-            return getRandomErrorResponse()
-        } else {
-            await sendTypingAction(chatId)
-            console.log(err)
-            const responseText = `Yo some error occured\nWait a while and then try again\nContact this guy if the issue persists @wavymio`
-            return responseText
-        }
+    if (err.response && err.response.promptFeedback && err.response.promptFeedback.blockReason === 'SAFETY') {
+        await sendTypingAction(chatId)
+        console.log("sendMessage() was unsuccessful. Response was blocked due to SAFETY.")
+        console.log("Error:", err)
+        console.log("Response:", err.response)
+        console.log("Block Reason:", err.response.promptFeedback.blockReason)
+        return getRandomErrorResponse()
+    } else {
+        await sendTypingAction(chatId)
+        console.error("An unexpected error occurred:", err)
+        const responseText = `Yo some error occurred\nWait a while and then try again\nContact this guy if the issue persists @wavymio`
+        return responseText
     }
   
 }
