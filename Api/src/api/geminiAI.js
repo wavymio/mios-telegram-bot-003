@@ -76,21 +76,26 @@ const processText = async (userText, chatId) => {
 
         return responseText
     } catch (err) {
-        console.error("Error caught:", err)
-        if (err.response && err.response.promptFeedback && err.response.promptFeedback.blockReason === 'SAFETY') {
-            await sendTypingAction(chatId)
-            console.log("sendMessage() was unsuccessful. Response was blocked due to SAFETY.")
-            console.log("Error:", err)
-            console.log("Response:", err.response)
-            console.log("Block Reason:", err.response.promptFeedback.blockReason)
-            return getRandomErrorResponse()
-        } else {
-            await sendTypingAction(chatId)
-            console.error("An unexpected error occurred:", err)
-            const responseText = `Yo some error occurred\nWait a while and then try again\nContact this guy if the issue persists @wavymio`
-            return responseText
+    console.error("Error caught:", err);
+        if (err.response) {
+            console.log("Response:", err.response);
+            if (err.response.promptFeedback && err.response.promptFeedback.blockReason === 'SAFETY') {
+                await sendTypingAction(chatId);
+                console.log("sendMessage() was unsuccessful. Response was blocked due to SAFETY.");
+                console.log("Error:", err);
+                console.log("Response:", err.response);
+                console.log("Block Reason:", err.response.promptFeedback.blockReason);
+                // Clear conversation history when safety error occurs
+                conversationHistory = [];
+                return getRandomErrorResponse();
+            }
         }
-    }
+        await sendTypingAction(chatId);
+        console.error("An unexpected error occurred:", err);
+        const responseText = `Yo some error occurred\nWait a while and then try again\nContact this guy if the issue persists @wavymio`;
+        return responseText;
+}
+
 }
 
 module.exports = processText
