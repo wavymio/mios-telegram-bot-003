@@ -48,4 +48,4 @@ const processFreeMessages = async (userText, chatId) => {
     }
 }
 
-module.export = processFreeMessages
+module.exports = processFreeMessages
