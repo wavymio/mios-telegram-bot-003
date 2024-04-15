@@ -31,12 +31,14 @@ const processFreeMessages = async (userText, chatId) => {
             "max_new_tokens": 512
         })
 
+        console.log(response)
+
         if (!response.data) {
             const responseText = "I feel wierd, please give me a moment"
         }
   
         const responseText = response.data.output.content
-        console.log(response.data.credits)
+        
 
         return responseText
       
