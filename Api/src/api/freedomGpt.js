@@ -31,16 +31,16 @@ const processFreeMessages = async (userText, chatId) => {
             "max_new_tokens": 512
         })
 
-        console.log(response.data.output)
+        console.log(response.data?.output)
         console.log(response.data)
 
         if (!response.data || !response.data.output) {
             const responseText = "I feel wierd, please give me a moment"
+            return responseText
         }
   
         const responseText = response.data.output.content
         
-
         return responseText
       
     } catch (err) {
