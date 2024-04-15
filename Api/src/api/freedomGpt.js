@@ -4,6 +4,30 @@ const freedomGptApiKey = process.env.FREEDOMGPT_API_KEY
 const getRandomMisunderstanding = require("../functions/randomMisunderstanding")
 const { sendTypingAction } = require("./sendMessage")
 
+let conversationHistory = []
+
+function calculateDelayUntilMidnight() {
+    const now = new Date();
+    const midnight = new Date(now)
+    midnight.setHours(24, 0, 0, 0) // Set to next midnight
+    return midnight - now // Calculate the difference in milliseconds
+}
+
+// Function to clear conversation history
+function clearConversationHistory() {
+    conversationHistory = []
+    console.log("Conversation history cleared.")
+}
+
+// Calculate the initial delay until the next midnight
+const initialDelay = calculateDelayUntilMidnight();
+
+// Set timeout to clear conversation history at midnight every day
+setTimeout(() => {
+    clearConversationHistory();
+    setInterval(clearConversationHistory, 24 * 60 * 60 * 1000) // Repeat every 24 hours
+}, initialDelay)
+
 const processFreeMessages = async (userText, chatId) => {
     try {
         if (!userText) {
@@ -14,15 +38,15 @@ const processFreeMessages = async (userText, chatId) => {
         }
 
         await sendTypingAction(chatId)
+
+        conversationHistory.push({
+            "role": "user",
+            "content": userText
+        })
         
         const response = await axios.post(apiUrl, {
             "apiKey": freedomGptApiKey,
-            "messages": [
-              {
-                "role": "user",
-                "content": userText
-              }
-            ],
+            "messages": conversationHistory,
             "temperature": 0.7,
             "top_k": 40,
             "top_p": 0.8,
