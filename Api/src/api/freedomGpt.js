@@ -32,6 +32,7 @@ const processFreeMessages = async (userText, chatId) => {
         })
 
         console.log(response.data.output)
+        console.log(response.data.)
 
         if (!response.data || !response.data.output) {
             const responseText = "I feel wierd, please give me a moment"
