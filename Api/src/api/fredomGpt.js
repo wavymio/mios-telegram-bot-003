@@ -12,7 +12,9 @@ const processFreeMessages = async (userText, chatId) => {
             const responseText = getRandomMisunderstanding()
             return responseText
         }
-      
+
+        await sendTypingAction(chatId)
+        
         const response = await axios.post(apiUrl, {
             "apiKey": freedomGptApiKey,
             "messages": [
