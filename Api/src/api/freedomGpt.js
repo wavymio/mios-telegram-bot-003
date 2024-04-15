@@ -31,7 +31,7 @@ const processFreeMessages = async (userText, chatId) => {
             "max_new_tokens": 512
         })
 
-        console.log(response.data)
+        console.log(response.data.output)
 
         if (!response.data || !response.data.output) {
             const responseText = "I feel wierd, please give me a moment"
