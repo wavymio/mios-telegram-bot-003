@@ -2,7 +2,7 @@ const { Router } = require('express')
 const router = Router()
 const { sendMessage, replyToMessage, replyToCommand } = require('../api/sendMessage')
 const { commands } = require('../config/commands')
-const processText = require('../api/geminiAI.js')
+const processFreeMessages = require('../api/freedomGpt.js')
 const { saveUserData } = require('../functions/saveUserData.js')
 
 router.post('/', async (req, res) => {
@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
                     break
             }
         } else {
-            const processedText = await processText(message.text, message.chat.id)
+            const processedText = await processFreeMessages(message.text, message.chat.id)
             console.log(processedText)
             replyToMessage(message.chat.id, message.message_id, processedText)
         }
