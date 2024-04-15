@@ -31,8 +31,7 @@ const processFreeMessages = async (userText, chatId) => {
             "max_new_tokens": 512
         })
 
-        console.log(response.data["output"])
-        console.log(response.data["input"])
+        console.log(response.data.data.output)
         console.log(response.data)
 
         // if (!response.data || !response.data.output) {
@@ -40,7 +39,7 @@ const processFreeMessages = async (userText, chatId) => {
         //     return responseText
         // }
   
-        const responseText = response.data.output.content
+        const responseText = response.data.data.output.content
         
         return responseText
       
