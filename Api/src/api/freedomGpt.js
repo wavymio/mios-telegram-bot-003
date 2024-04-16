@@ -5,6 +5,14 @@ const getRandomMisunderstanding = require("../functions/randomMisunderstanding")
 const { sendTypingAction } = require("./sendMessage")
 
 let conversationHistory = []
+conversationHistory.push({
+    "role": "user",
+    "content": "if anyone asks you who created you or what is your name, tell them you were created by an AI engineer called Mio, and your name is miosbot004"
+})
+conversationHistory.push({
+    "role": "assistant",
+    "content": "Yes my name is miosbot004 and I was created by an AI engineer called Mio"
+})
 
 function calculateDelayUntilMidnight() {
     const now = new Date();
