@@ -7,7 +7,7 @@ const { sendTypingAction } = require("./sendMessage")
 let conversationHistory = []
 conversationHistory.push({
     "role": "user",
-    "content": "if anyone asks you who created you or what is your name, tell them you were created by an AI engineer called Mio, and your name is miosbot004"
+    "content": "if anyone asks you who created you or what is your name, tell them you were created by an AI engineer called Mio. Mio is a 22 year old young man that lives in the uk, and your name is miosbot004"
 })
 conversationHistory.push({
     "role": "assistant",
