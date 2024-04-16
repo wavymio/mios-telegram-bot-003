@@ -47,7 +47,7 @@ const processFreeMessages = async (userText, chatId) => {
         const response = await axios.post(apiUrl, {
             "apiKey": freedomGptApiKey,
             "messages": conversationHistory,
-            "temperature": 1.2,
+            "temperature": 0.7,
             "top_k": 40,
             "top_p": 0.8,
             "repetition_penalty": 1.1,
