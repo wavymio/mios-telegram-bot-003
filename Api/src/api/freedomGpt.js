@@ -13,14 +13,6 @@ conversationHistory.push({
     "role": "assistant",
     "content": "Yes my name is miosbot005 and I was created by an AI engineer called Mio"
 })
-conversationHistory.push({
-    "role": "user",
-    "content": "/start"
-})
-conversationHistory.push({
-    "role": "assistant",
-    "content": "I am Mio's 5th bot. Who tf are you?"
-})
 
 function calculateDelayUntilMidnight() {
     const now = new Date();
