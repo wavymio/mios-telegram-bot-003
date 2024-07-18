@@ -53,14 +53,20 @@ const processFreeMessages = async (userText, chatId) => {
         })
         
         const response = await axios.post(apiUrl, {
-            "apiKey": freedomGptApiKey,
+            "model": "liberty",
             "messages": conversationHistory,
+            "stream": true,
+            "max_tokens": 512
             "temperature": 0.7,
             "top_k": 40,
             "top_p": 0.8,
-            "repetition_penalty": 1.1,
+            // "repetition_penalty": 1.1,
             "batch_size": 4,
-            "max_new_tokens": 512
+        }, {
+            headers: {
+                Authorization: `Bearer ${freedomGptApiKey}`,
+                'Content-Type': 'application/json'
+            }
         })
 
         console.log(response.data.data.output)
