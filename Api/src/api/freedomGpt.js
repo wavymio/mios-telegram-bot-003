@@ -68,10 +68,8 @@ const processFreeMessages = async (userText, chatId) => {
                 'Content-Type': 'application/json'
             }
         })
-
-        console.log(response)
-        console.log(response.data.data.output)
-        console.log(response.data)
+        console.loog(conversationHistory)
+        console.log(response.data.choices[0].message)
 
         // if (!response.data || !response.data.output) {
         //     const responseText = "I feel wierd, please give me a moment"
