@@ -78,7 +78,7 @@ const processFreeMessages = async (userText, chatId) => {
         //     return responseText
         // }
   
-        const responseText = response.data.data.output.content
+        const responseText = response.data.choices[0].message.content
 
         conversationHistory.push({
             "role": "assistant",
