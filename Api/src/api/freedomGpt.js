@@ -55,7 +55,7 @@ const processFreeMessages = async (userText, chatId) => {
         const response = await axios.post(apiUrl, {
             "model": "liberty",
             "messages": conversationHistory,
-            "stream": true,
+            "stream": false,
             "max_tokens": 512,
             "temperature": 0.7,
             "top_k": 40,
@@ -69,6 +69,7 @@ const processFreeMessages = async (userText, chatId) => {
             }
         })
 
+        console.log(response)
         console.log(response.data.data.output)
         console.log(response.data)
 
