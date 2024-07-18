@@ -68,7 +68,7 @@ const processFreeMessages = async (userText, chatId) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.loog(conversationHistory)
+        console.log(conversationHistory)
         console.log(response.data.choices[0].message)
 
         // if (!response.data || !response.data.output) {
