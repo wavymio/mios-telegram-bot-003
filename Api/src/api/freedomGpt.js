@@ -56,7 +56,7 @@ const processFreeMessages = async (userText, chatId) => {
             "model": "liberty",
             "messages": conversationHistory,
             "stream": true,
-            "max_tokens": 512
+            "max_tokens": 512,
             "temperature": 0.7,
             "top_k": 40,
             "top_p": 0.8,
